@@ -23,6 +23,7 @@
   :root {
     --fs-14: calc(14 / 16 * 1rem);
     --fs-16: calc(16 / 16 * 1rem);
+    --fs-18: calc(18 / 16 * 1rem);
     --fs-24: calc(24 / 16 * 1rem);
     --fs-36: calc(36 / 16 * 1rem);
     --fs-42: calc(42 / 16 * 1rem);
@@ -33,6 +34,7 @@
     --font-size-h1: var(--fs-42);
     --font-size-h2: var(--fs-36);
     --font-size-h3: var(--fs-24);
+    --font-size-button: var(--fs-18);
 
     @media (width >= calc(600 / 16 * 1rem)) {
       --font-size-topnav: var(--fs-16);
@@ -46,17 +48,21 @@
     --c-neutral-100: hsl(0, 0%, 100%);
     --c-neutral-800: hsl(233, 14%, 25%);
     --c-primary-200: hsl(180, 100%, 42%);
+    --c-primary-300: hsl(180, 100%, 37%);
     --c-primary-400: hsl(232, 58%, 55%);
     --c-secondary-400: hsl(320, 85%, 41%);
     --c-transparent: transparent;
 
     --clr-main-bg: var(--c-neutral-100);
     --clr-text-dark: var(--c-neutral-800);
-    --clr-text-white: var(--c-neutral-100);
+    --clr-text-light: var(--c-neutral-100);
     --clr-header-bg: var(--c-primary-400);
     --clr-hero-bg: var(--c-primary-400);
     --clr-primary-button-bg: var(--c-primary-200);
+    --clr-primary-button-bg-hover: var(--c-primary-300);
     --clr-secondary-button-bg: var(--c-transparent);
+    --clr-secondary-button-text: var(--c-primary-400);
+    --clr-secondary-button-bg-hover: var(--c-neutral-100);
     --clr-full-width-bg: var(--c-secondary-400);
   }
   ::before,
@@ -81,6 +87,13 @@
     line-height: 1.1;
   }
 
+  h1,
+  h2,
+  h3,
+  p {
+    text-wrap: balance;
+  }
+
   h1 {
     font-size: var(--font-size-h1);
   }
@@ -95,6 +108,26 @@
 
   a {
     text-decoration: none;
+  }
+
+  p {
+    font-size: calc(18 / 16 * 1rem);
+
+    &.medium {
+      font-size: calc(20 / 16 * 1rem);
+
+      @media (width >= calc(600 / 16 * 1rem)) {
+        font-size: calc(24 / 16 * 1rem);
+      }
+    }
+
+    &.large {
+      font-size: calc(24 / 16 * 1rem);
+
+      @media (width >= calc(600 / 16 * 1rem)) {
+        font-size: calc(28 / 16 * 1rem);
+      }
+    }
   }
 
   img,
@@ -112,6 +145,40 @@
 }
 
 @layer component {
+  .button {
+    font-size: var(--font-size-button);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    border-radius: 24px;
+    transition: 150ms ease-in-out;
+    transition-property: background-color, color;
+    display: inline-block;
+
+    &.primary {
+      background-color: var(--clr-primary-button-bg);
+      color: var(--clr-text-dark);
+      border: 2px solid var(--clr-secondary-button-bg);
+
+      &:hover {
+        background-color: var(--clr-primary-button-bg-hover);
+      }
+    }
+
+    &.secondary {
+      background-color: var(--clr-secondary-button-bg);
+      border: 2px solid var(--clr-text-light);
+      color: var(--clr-text-light);
+
+      &:hover {
+        background-color: var(--clr-secondary-button-bg-hover);
+        color: var(--clr-secondary-button-text);
+      }
+    }
+  }
+
   .topnav {
     background-color: var(--clr-header-bg);
 
@@ -157,7 +224,7 @@
     .topnav__link {
       font-size: var(--font-size-topnav);
       font-weight: 700;
-      color: var(--clr-text-white);
+      color: var(--clr-text-light);
       text-transform: uppercase;
       letter-spacing: 0.05em;
 
@@ -165,6 +232,64 @@
         text-decoration: underline 2px;
         text-underline-offset: 4px;
       }
+    }
+  }
+  /* Hero */
+  .hero {
+    background-color: var(--clr-hero-bg);
+    color: var(--clr-text-light);
+
+    .hero__wrapper {
+      /* display: flow-root; */
+      padding-block: 30px 60px;
+
+      display: grid;
+
+      @media (width >= calc(1000 / 16 * 1rem)) {
+        padding-block: 40px 80px;
+
+        grid-template-columns: 6fr 5fr;
+        align-items: center;
+      }
+    }
+
+    .hero__image {
+      width: calc(200 / 16 * 1rem);
+      margin-block-end: 40px;
+
+      justify-self: center;
+
+      @media (width >= calc(600 / 16 * 1rem)) {
+        width: calc(483 / 16 * 1rem);
+      }
+
+      @media (width >= calc(1000 / 16 * 1rem)) {
+        width: calc(483 / 16 * 1rem);
+        margin-block-end: 0;
+        order: 2;
+        justify-self: end;
+      }
+    }
+
+    .hero__text {
+    }
+
+    .hero__title {
+      margin-block-end: 12px;
+
+      @media (width >= calc(600 / 16 * 1rem)) {
+        margin-block-end: 20px;
+      }
+    }
+
+    .hero__content {
+      margin-block-end: 40px;
+      max-width: 40ch;
+    }
+
+    .hero__buttons {
+      display: flex;
+      gap: 20px;
     }
   }
 }
