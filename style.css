@@ -141,6 +141,11 @@
   .wrapper {
     width: min(calc(100% - 48px), calc(1200 / 16 * 1rem));
     margin-inline: auto;
+    padding-block: 60px;
+
+    @media (width >= calc(1000 / 16 * 1rem)) {
+      padding-block: 80px;
+    }
   }
 }
 
@@ -290,6 +295,45 @@
     .hero__buttons {
       display: flex;
       gap: 20px;
+    }
+  }
+
+  .features {
+    .features__wrapper {
+      display: grid;
+      gap: 40px;
+
+      @media (width >= calc(1000 / 16 * 1rem)) {
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        gap: 40px;
+      }
+    }
+
+    .features__item {
+      display: grid;
+      grid-auto-rows: min-content;
+      gap: 10px;
+
+      @media (width < calc(1000 / 16 * 1rem)) {
+        justify-items: center;
+        text-align: center;
+      }
+    }
+
+    .features__icon {
+      height: calc(43 / 16 * 1rem);
+      width: auto;
+      color: var(--clr-primary-button-bg-hover);
+    }
+
+    .features__title {
+      line-height: 1;
+    }
+
+    .features__description {
+      font-size: var(--font-size-features-text);
+      max-width: 40ch;
     }
   }
 }
