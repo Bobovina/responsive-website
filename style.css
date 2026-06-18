@@ -62,10 +62,15 @@
     --clr-hero-bg: var(--c-primary-400);
     --clr-primary-button-bg: var(--c-primary-200);
     --clr-primary-button-bg-hover: var(--c-primary-300);
+    --clr-primary-button-white-bg: var(--c-neutral-100);
+    --clr-primary-button-white-bg-hover: var(--c-primary-300);
     --clr-secondary-button-bg: var(--c-transparent);
     --clr-secondary-button-text: var(--c-primary-400);
     --clr-secondary-button-bg-hover: var(--c-neutral-100);
     --clr-full-width-bg: var(--c-secondary-400);
+    --clr-cta-gradient1: var(--c-neutral-800);
+    --clr-cta-gradient2: var(--c-primary-400);
+    --clr-cta-gradient3: var(--c-primary-200);
   }
   ::before,
   ::after {
@@ -149,6 +154,24 @@
       padding-block: 80px;
     }
   }
+
+  .fullwidth {
+    text-align: center;
+
+    .fullwidth__wrapper {
+      display: grid;
+      justify-items: center;
+    }
+
+    .fullwidth__title {
+      margin-block-end: 20px;
+    }
+
+    .fullwidth__text {
+      max-width: 80ch;
+      margin-block-end: 40px;
+    }
+  }
 }
 
 @layer component {
@@ -171,6 +194,14 @@
 
       &:hover {
         background-color: var(--clr-primary-button-bg-hover);
+      }
+
+      &.white {
+        background-color: var(--clr-primary-button-white-bg);
+
+        &:hover {
+          background-color: var(--clr-primary-button-white-bg-hover);
+        }
       }
     }
 
@@ -342,21 +373,6 @@
   .fw-feature {
     background-color: var(--clr-full-width-bg);
     color: var(--clr-text-light);
-    text-align: center;
-
-    .fw-feature__wrapper {
-      display: grid;
-      justify-items: center;
-    }
-
-    .fw-feature__title {
-      margin-block-end: 20px;
-    }
-
-    .fw-feature__text {
-      max-width: 80ch;
-      margin-block-end: 40px;
-    }
 
     .fw-feature__image {
       width: 100%;
@@ -365,59 +381,91 @@
   }
 
   .testimonial {
+    .testimonial__wrapper {
+      max-width: calc(800 / 16 * 1rem);
+    }
+
+    .testimonial__figure {
+    }
+
+    .testimonial__icon {
+      width: calc(52 / 16 * 1rem);
+      margin-block-end: 20px;
+
+      @media (width >= calc(600 / 16 * 1rem)) {
+        width: calc(78 / 16 * 1rem);
+        margin-block-end: 30px;
+      }
+    }
+
+    .testimonial__blockquote {
+    }
+
+    .testimonial__text {
+      font-size: var(--font-size-quote);
+      font-weight: 700;
+      margin-block-end: 30px;
+
+      @media (width >= calc(600 / 16 * 1rem)) {
+        margin-block-end: 40px;
+      }
+    }
+
+    .testimonial__author-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+
+      text-align: center;
+
+      @media (width >= calc(600 / 16 * 1rem)) {
+        flex-direction: row;
+        gap: 20px 30px;
+        text-align: left;
+      }
+    }
+
+    .testimonial__author-image {
+      width: calc(120 / 16 * 1);
+      border-radius: 100vh;
+    }
+
+    .testimonial__author__desc {
+    }
   }
-}
-.testimonial__wrapper {
-  max-width: calc(800 / 16 * 1rem);
-}
 
-.testimonial__figure {
-}
+  .fw-cta {
+    background: linear-gradient(
+      to right,
+      var(--clr-cta-gradient1),
+      var(--clr-cta-gradient2) 75%,
+      var(--clr-cta-gradient3) 150%
+    );
 
-.testimonial__icon {
-  width: calc(52 / 16 * 1rem);
-  margin-block-end: 20px;
+    @media (width >= calc(1000 / 16 * 1)) {
+      background: linear-gradient(
+        to right,
+        var(--clr-cta-gradient1),
+        var(--clr-cta-gradient2) 55%,
+        var(--clr-cta-gradient3) 110%
+      );
+    }
 
-  @media (width >= calc(600 / 16 * 1rem)) {
-    width: calc(78 / 16 * 1rem);
-    margin-block-end: 30px;
+    color: var(--clr-text-light);
+
+    fw-cta__wrapper {
+    }
+
+    fw-cta__title {
+    }
+
+    fw-cta__text {
+    }
+
+    fw-cta__button {
+    }
   }
-}
-
-.testimonial__blockquote {
-}
-
-.testimonial__text {
-  font-size: var(--font-size-quote);
-  font-weight: 700;
-  margin-block-end: 30px;
-
-  @media (width >= calc(600 / 16 * 1rem)) {
-    margin-block-end: 40px;
-  }
-}
-
-.testimonial__author-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-
-  text-align: center;
-
-  @media (width >= calc(600 / 16 * 1rem)) {
-    flex-direction: row;
-    gap: 20px 30px;
-    text-align: left;
-  }
-}
-
-.testimonial__author-image {
-  width: calc(120 / 16 * 1);
-  border-radius: 100vh;
-}
-
-.testimonial__author__desc {
 }
 
 @layer util {
