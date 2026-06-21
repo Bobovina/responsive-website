@@ -53,6 +53,7 @@
     --c-primary-300: hsl(180, 100%, 37%);
     --c-primary-400: hsl(232, 58%, 55%);
     --c-secondary-400: hsl(320, 85%, 41%);
+    --c-tertiay-400: hsl(50, 99%, 53%);
     --c-transparent: transparent;
 
     --clr-main-bg: var(--c-neutral-100);
@@ -71,6 +72,8 @@
     --clr-cta-gradient1: var(--c-neutral-800);
     --clr-cta-gradient2: var(--c-primary-400);
     --clr-cta-gradient3: var(--c-primary-200);
+    --clr-topnav-link-gradient1: var(--c-primary-200);
+    --clr-topnav-link-gradient2: var(--c-tertiay-400);
     --clr-footer-link-hover: var(--c-secondary-400);
   }
   ::before,
@@ -267,9 +270,21 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
 
-      &:hover {
-        text-decoration: underline 2px;
-        text-underline-offset: 4px;
+      &::after {
+        content: "";
+        display: block;
+        height: 3px;
+        background: linear-gradient(
+          to right,
+          var(--clr-topnav-link-gradient1),
+          var(--clr-topnav-link-gradient2) 82%
+        );
+        opacity: 0;
+        transition: opacity 150ms ease-in-out;
+      }
+
+      &:hover::after {
+        opacity: 1;
       }
     }
   }
